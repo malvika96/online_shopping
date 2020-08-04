@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 05, 2018 at 06:43 PM
--- Server version: 5.7.19
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Aug 04, 2020 at 09:04 AM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `onlineshopping`
+-- Database: `online_shopping`
 --
 
 -- --------------------------------------------------------
@@ -28,12 +26,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `accbrand`
 --
 
-DROP TABLE IF EXISTS `accbrand`;
-CREATE TABLE IF NOT EXISTS `accbrand` (
-  `accbid` int(11) NOT NULL AUTO_INCREMENT,
-  `accbrandname` varchar(200) NOT NULL,
-  PRIMARY KEY (`accbid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `accbrand` (
+  `accbid` int(11) NOT NULL,
+  `accbrandname` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accbrand`
@@ -48,13 +44,11 @@ INSERT INTO `accbrand` (`accbid`, `accbrandname`) VALUES
 -- Table structure for table `accgeneral`
 --
 
-DROP TABLE IF EXISTS `accgeneral`;
-CREATE TABLE IF NOT EXISTS `accgeneral` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accgeneral` (
+  `id` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
-  `features` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+  `features` varchar(500) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accgeneral`
@@ -72,13 +66,11 @@ INSERT INTO `accgeneral` (`id`, `mid`, `features`) VALUES
 -- Table structure for table `accmodel`
 --
 
-DROP TABLE IF EXISTS `accmodel`;
-CREATE TABLE IF NOT EXISTS `accmodel` (
-  `accmid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accmodel` (
+  `accmid` int(11) NOT NULL,
   `accbid` int(11) NOT NULL,
-  `accmodelname` varchar(200) NOT NULL,
-  PRIMARY KEY (`accmid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `accmodelname` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accmodel`
@@ -96,9 +88,8 @@ INSERT INTO `accmodel` (`accmid`, `accbid`, `accmodelname`) VALUES
 -- Table structure for table `accproduct`
 --
 
-DROP TABLE IF EXISTS `accproduct`;
-CREATE TABLE IF NOT EXISTS `accproduct` (
-  `accpid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accproduct` (
+  `accpid` int(11) NOT NULL,
   `accbid` int(11) NOT NULL,
   `accmid` int(11) NOT NULL,
   `acccategaryid` int(11) NOT NULL,
@@ -108,9 +99,8 @@ CREATE TABLE IF NOT EXISTS `accproduct` (
   `img2` varchar(1000) NOT NULL,
   `img3` varchar(1000) NOT NULL,
   `featuresid` int(11) NOT NULL,
-  `accfeatures` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`accpid`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  `accfeatures` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accproduct`
@@ -128,24 +118,22 @@ INSERT INTO `accproduct` (`accpid`, `accbid`, `accmid`, `acccategaryid`, `aprodu
 -- Table structure for table `adminlogin`
 --
 
-DROP TABLE IF EXISTS `adminlogin`;
-CREATE TABLE IF NOT EXISTS `adminlogin` (
-  `aid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `adminlogin` (
+  `aid` int(11) NOT NULL,
   `adminname` varchar(200) DEFAULT NULL,
   `lastname` varchar(500) DEFAULT NULL,
   `mobileno` bigint(20) DEFAULT NULL,
   `img` varchar(2000) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`aid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `password` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `adminlogin`
 --
 
 INSERT INTO `adminlogin` (`aid`, `adminname`, `lastname`, `mobileno`, `img`, `email`, `password`) VALUES
-(1, 'Malvika', 'Nannavare', 8487045482, NULL, 'nannavaremalvika@gmail.com', '123');
+(1, 'abc', 'abc', 1234567890, NULL, 'xyz@gmail.com', '123');
 
 -- --------------------------------------------------------
 
@@ -153,14 +141,12 @@ INSERT INTO `adminlogin` (`aid`, `adminname`, `lastname`, `mobileno`, `img`, `em
 -- Table structure for table `admin_contact`
 --
 
-DROP TABLE IF EXISTS `admin_contact`;
-CREATE TABLE IF NOT EXISTS `admin_contact` (
-  `ac_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin_contact` (
+  `ac_id` int(11) NOT NULL,
   `address` varchar(500) DEFAULT NULL,
   `phone` bigint(20) DEFAULT NULL,
   `phone1` bigint(20) DEFAULT NULL,
-  `mail` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`ac_id`)
+  `mail` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -169,12 +155,10 @@ CREATE TABLE IF NOT EXISTS `admin_contact` (
 -- Table structure for table `advertisement`
 --
 
-DROP TABLE IF EXISTS `advertisement`;
-CREATE TABLE IF NOT EXISTS `advertisement` (
-  `advid` int(11) NOT NULL AUTO_INCREMENT,
-  `advimg` varchar(5000) DEFAULT NULL,
-  PRIMARY KEY (`advid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+CREATE TABLE `advertisement` (
+  `advid` int(11) NOT NULL,
+  `advimg` varchar(5000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertisement`
@@ -191,12 +175,10 @@ INSERT INTO `advertisement` (`advid`, `advimg`) VALUES
 -- Table structure for table `brand`
 --
 
-DROP TABLE IF EXISTS `brand`;
-CREATE TABLE IF NOT EXISTS `brand` (
-  `bid` int(11) NOT NULL AUTO_INCREMENT,
-  `brandname` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`bid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+CREATE TABLE `brand` (
+  `bid` int(11) NOT NULL,
+  `brandname` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `brand`
@@ -212,15 +194,13 @@ INSERT INTO `brand` (`bid`, `brandname`) VALUES
 -- Table structure for table `cart`
 --
 
-DROP TABLE IF EXISTS `cart`;
-CREATE TABLE IF NOT EXISTS `cart` (
-  `cartid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cart` (
+  `cartid` int(11) NOT NULL,
   `productid` int(11) NOT NULL,
   `productname` varchar(500) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `image` varchar(5000) DEFAULT NULL,
-  `email` varchar(500) NOT NULL,
-  PRIMARY KEY (`cartid`)
+  `email` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -229,24 +209,22 @@ CREATE TABLE IF NOT EXISTS `cart` (
 -- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `customer`;
-CREATE TABLE IF NOT EXISTS `customer` (
-  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `mobile` bigint(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `confirmpassword` varchar(50) NOT NULL,
-  PRIMARY KEY (`customer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `confirmpassword` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `mobile`, `email`, `password`, `confirmpassword`) VALUES
-(4, 'nitu', 'soni', 9723380853, 'nitu@gmail.com', '202cb962ac59075b964b07152d234b70', '202cb962ac59075b964b07152d234b70');
+(4, 'abc', 'abc', 1234567890, 'abc@gmail.com', '202cb962ac59075b964b07152d234b70', '202cb962ac59075b964b07152d234b70');
 
 -- --------------------------------------------------------
 
@@ -254,22 +232,13 @@ INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `mobile`, `ema
 -- Table structure for table `customer_contact`
 --
 
-DROP TABLE IF EXISTS `customer_contact`;
-CREATE TABLE IF NOT EXISTS `customer_contact` (
-  `cc_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customer_contact` (
+  `cc_id` int(11) NOT NULL,
   `cname` varchar(200) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `subject` varchar(500) DEFAULT NULL,
-  `message` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`cc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customer_contact`
---
-
-INSERT INTO `customer_contact` (`cc_id`, `cname`, `email`, `subject`, `message`) VALUES
-(1, 'malvika l. nannavare', 'nannavaremalvika@gmail.com', 'mobile not work proparly', 'my mobile is not work proparly so give me a new one or repair my mobile or give me refund');
+  `message` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -277,12 +246,10 @@ INSERT INTO `customer_contact` (`cc_id`, `cname`, `email`, `subject`, `message`)
 -- Table structure for table `mobile_acc_category`
 --
 
-DROP TABLE IF EXISTS `mobile_acc_category`;
-CREATE TABLE IF NOT EXISTS `mobile_acc_category` (
-  `acccid` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`acccid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+CREATE TABLE `mobile_acc_category` (
+  `acccid` int(11) NOT NULL,
+  `category` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mobile_acc_category`
@@ -297,13 +264,11 @@ INSERT INTO `mobile_acc_category` (`acccid`, `category`) VALUES
 -- Table structure for table `model`
 --
 
-DROP TABLE IF EXISTS `model`;
-CREATE TABLE IF NOT EXISTS `model` (
-  `mid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `model` (
+  `mid` int(11) NOT NULL,
   `bid` int(11) NOT NULL,
-  `modelname` varchar(500) NOT NULL,
-  PRIMARY KEY (`mid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `modelname` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `model`
@@ -321,9 +286,8 @@ INSERT INTO `model` (`mid`, `bid`, `modelname`) VALUES
 -- Table structure for table `productuplode`
 --
 
-DROP TABLE IF EXISTS `productuplode`;
-CREATE TABLE IF NOT EXISTS `productuplode` (
-  `pid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `productuplode` (
+  `pid` int(11) NOT NULL,
   `bid` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
   `productname` varchar(50) DEFAULT NULL,
@@ -355,9 +319,8 @@ CREATE TABLE IF NOT EXISTS `productuplode` (
   `height` varchar(50) DEFAULT NULL,
   `depth` varchar(50) DEFAULT NULL,
   `weight` varchar(50) DEFAULT NULL,
-  `warranty` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `warranty` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `productuplode`
@@ -366,8 +329,169 @@ CREATE TABLE IF NOT EXISTS `productuplode` (
 INSERT INTO `productuplode` (`pid`, `bid`, `mid`, `productname`, `price`, `ram`, `internalstorage`, `img1`, `img2`, `img3`, `img4`, `inthebox`, `modelnumber`, `color`, `brousetype`, `simtype`, `hybridsimslot`, `displaysize`, `resolution`, `resolutiontype`, `os`, `processortype`, `processercore`, `primarycamera`, `secondarycamera`, `networktype`, `supportednetwork`, `betterycapacity`, `width`, `height`, `depth`, `weight`, `warranty`) VALUES
 (5, 4, 9, 'nokia lumia 797', '10000', '3 GB', '32 GB', 'Black_01Front-ed0dc.jpg', 'Black_02Back-3d0af.jpg', 'ad1.jpg', 'ad2.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (7, 3, 8, 'Samsung Galaxy J7 Duo', '12,990', '4 GB', '32 GB', 'Black_02Back-3d0af.jpg', 'Black_01Front-ed0dc.jpg', 'Black_01Front-ed0dc.jpg', 'Black_02Back-3d0af.jpg', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-COMMIT;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accbrand`
+--
+ALTER TABLE `accbrand`
+  ADD PRIMARY KEY (`accbid`);
+
+--
+-- Indexes for table `accgeneral`
+--
+ALTER TABLE `accgeneral`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `accmodel`
+--
+ALTER TABLE `accmodel`
+  ADD PRIMARY KEY (`accmid`);
+
+--
+-- Indexes for table `accproduct`
+--
+ALTER TABLE `accproduct`
+  ADD PRIMARY KEY (`accpid`);
+
+--
+-- Indexes for table `adminlogin`
+--
+ALTER TABLE `adminlogin`
+  ADD PRIMARY KEY (`aid`);
+
+--
+-- Indexes for table `admin_contact`
+--
+ALTER TABLE `admin_contact`
+  ADD PRIMARY KEY (`ac_id`);
+
+--
+-- Indexes for table `advertisement`
+--
+ALTER TABLE `advertisement`
+  ADD PRIMARY KEY (`advid`);
+
+--
+-- Indexes for table `brand`
+--
+ALTER TABLE `brand`
+  ADD PRIMARY KEY (`bid`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cartid`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `customer_contact`
+--
+ALTER TABLE `customer_contact`
+  ADD PRIMARY KEY (`cc_id`);
+
+--
+-- Indexes for table `mobile_acc_category`
+--
+ALTER TABLE `mobile_acc_category`
+  ADD PRIMARY KEY (`acccid`);
+
+--
+-- Indexes for table `model`
+--
+ALTER TABLE `model`
+  ADD PRIMARY KEY (`mid`);
+
+--
+-- Indexes for table `productuplode`
+--
+ALTER TABLE `productuplode`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accbrand`
+--
+ALTER TABLE `accbrand`
+  MODIFY `accbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `accgeneral`
+--
+ALTER TABLE `accgeneral`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `accmodel`
+--
+ALTER TABLE `accmodel`
+  MODIFY `accmid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `accproduct`
+--
+ALTER TABLE `accproduct`
+  MODIFY `accpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT for table `adminlogin`
+--
+ALTER TABLE `adminlogin`
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `admin_contact`
+--
+ALTER TABLE `admin_contact`
+  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `advertisement`
+--
+ALTER TABLE `advertisement`
+  MODIFY `advid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `brand`
+--
+ALTER TABLE `brand`
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `customer_contact`
+--
+ALTER TABLE `customer_contact`
+  MODIFY `cc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `mobile_acc_category`
+--
+ALTER TABLE `mobile_acc_category`
+  MODIFY `acccid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `model`
+--
+ALTER TABLE `model`
+  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `productuplode`
+--
+ALTER TABLE `productuplode`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
